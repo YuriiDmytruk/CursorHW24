@@ -1,5 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { addUser } from "../../redux/action.js";
 
 import { userModel } from "../../models/userModel.js";
 
@@ -16,14 +19,11 @@ function AddForm() {
     imgLink: "",
   });
 
+  const dispatch = useDispatch();
   const add = () => {
-    const user = new userModel(
-      0,
-      state.name,
-      state.userName,
-      state.imgLink
+    dispatch(
+      addUser(new userModel(0, state.name, state.userName, state.imgLink))
     );
-    //dispatch(addPublication(publication));
   };
 
   return (
