@@ -1,12 +1,14 @@
-import { ADD_USER } from "./types";
+import { ADD_USER, ADD_USERS } from "./types";
 
 import { userModel } from "../models/userModel.js";
 
 export const users = (state = initialState, action) => {
   switch (action.type) {
     case ADD_USER: {
-      action.payload.id = state.length;
       return [...state, action.payload];
+    }
+    case ADD_USERS: {
+      return [...state, action.payload.flat()];
     }
     default:
       return state;
