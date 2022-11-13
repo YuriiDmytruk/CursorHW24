@@ -5,14 +5,14 @@ import UserS from "./style/UserS.js";
 function User(props) {
   return (
     <UserS>
-      <div class="card">
+      <div className="card">
         <img
           src={props.user.imgLink}
           alt="userImg"
-          class="card__image"
+          className="card__image"
         />
-        <p class="card__name">{props.user.name}</p>
-        <p class="card__name">{props.user.userName}</p>
+        <p className="card__name">{props.user.name}</p>
+        <p className="card__name">{props.user.userName}</p>
       </div>
     </UserS>
   );
