@@ -1,7 +1,5 @@
 import { ADD_USER, ADD_USERS, RENEW_USERS } from "./types";
 
-import { userModel } from "../models/userModel.js";
-
 export const users = (state = [], action) => {
   switch (action.type) {
     case ADD_USER: {
