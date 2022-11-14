@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import User from "../user/User.jsx";
-import UsersS from "./style/UsersS.js";
+import User from "../user/User";
+import UsersS from "./style/UsersS";
 
 
 function Users() {

@@ -1,6 +1,6 @@
 import React from "react";
 
-import UserS from "./style/UserS.js";
+import UserS from "./style/UserS";
 
 function User(props) {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import NavBarS from "./style/NavBarS.js"
+import NavBarS from "./style/NavBarS"
 
 function NavBar() {
   return (
@@ -15,6 +15,16 @@ function NavBar() {
         <li className="option">
           <NavLink className="link" to="/addUser">
             Add User
+          </NavLink>
+        </li>
+        <li className="option">
+          <NavLink className="link" to="/news">
+            News
+          </NavLink>
+        </li>
+        <li className="option">
+          <NavLink className="link" to="/addNews">
+            Add News
           </NavLink>
         </li>
       </ul>

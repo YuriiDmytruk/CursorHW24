@@ -2,15 +2,15 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { addUser } from "../../redux/action.js";
+import { addUser } from "../../redux/users-store/action";
 
-import { userModel } from "../../models/userModel.js";
+import { userModel } from "../../models/userModel";
 
-import AddUserS from "./style/AddUserS.js";
-import Input from "./style/Input.js";
-import Button from "./style/Button.js";
+import AddUserS from "./style/AddUserS";
+import Input from "./style/Input";
+import Button from "./style/Button";
 
-import User from "../user/User.jsx";
+import User from "../user/User";
 
 function AddForm() {
   const [state, setState] = useState({

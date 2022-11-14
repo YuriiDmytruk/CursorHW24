@@ -5,6 +5,7 @@ var bodyParser = require('body-parser')
 const app = express();
 
 const User = require("./db/userModel");
+const News = require("./db/newsModel")
 
 dbConnect();
 
@@ -22,7 +23,8 @@ app.post("/users", jsonParser, (req, res) => {
     .save()
     .then((result) => {
       res.setHeader('Access-Control-Allow-Origin', '*');
-      res.status(201).send({
+      res.status(200).send({
+        status: 200,
         message: "User Created Successfully",
         result,
       });
@@ -30,6 +32,7 @@ app.post("/users", jsonParser, (req, res) => {
     .catch((error) => {
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.status(500).send({
+        status: 500,
         message: "Error creating user",
         error,
       });
@@ -46,10 +49,88 @@ app.get('/users', function(req, res) {
 
     res.setHeader('Access-Control-Allow-Origin', '*');
       res.status(200).send({
+        status: 200,
         message: "All users",
         userMap,
       });
   });
+});
+
+
+
+app.post("/news", jsonParser, (req, res) => {
+  const news = new News({
+    id:req.body.id,
+    title:req.body.title,
+    imgLink:req.body.imgLink,
+    newsText:req.body.newsText,
+    date:req.body.date
+  });
+
+  news
+    .save()
+    .then((result) => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.status(200).send({
+        status: 200,
+        message: "News Created Successfully",
+        result,
+      });
+    })
+    .catch((error) => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.status(500).send({
+        status: 500,
+        message: "Error creating news",
+        error,
+      });
+    });
+});
+
+app.get('/news', function(req, res) {
+  News.find({}, function(err, news) {
+    var newsMap = {};
+
+    news.forEach(function(n) {
+      newsMap[n.id] = n;
+    });
+
+    res.setHeader('Access-Control-Allow-Origin', '*');
+      res.status(200).send({
+        status: 200,
+        message: "All users",
+        newsMap,
+      });
+  });
+});
+
+app.put("/news", jsonParser, (req, res) => {
+  const filter = {id : req.body.id}
+  const update = {
+    title:req.body.title,
+    imgLink:req.body.imgLink,
+    newsText:req.body.newsText,
+    date:req.body.date
+  }
+
+  News.findOneAndUpdate(filter, update, {
+    new:true
+  }).then((result) => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.status(200).send({
+        status: 200,
+        message: "News Updated Successfully",
+        result,
+      });
+    })
+    .catch((error) => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.status(500).send({
+        status: 500,
+        message: "Error updating news",
+        error,
+      });
+    });
 });
 
 module.exports = app;
